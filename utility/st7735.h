@@ -12,6 +12,7 @@
 #define INITR_GREENTAB   0x0
 #define INITR_REDTAB     0x1
 #define INITR_BLACKTAB   0x2
+#define INITR_WHITETAB   0x3  // add this line
 
 #define INITR_18GREENTAB    INITR_GREENTAB
 #define INITR_18REDTAB      INITR_REDTAB

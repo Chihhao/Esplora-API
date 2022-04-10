@@ -156,7 +156,7 @@ const uint8_t Rcmd2red[] PROGMEM = {              // Init for 7735R, part 2 (red
       0x00, 0x7F,             //     XEND = 127
     ST7735_RASET  , 4      ,  //  2: Row addr set, 4 args, no delay:
       0x00, 0x00,             //     XSTART = 0
-      0x00, 0x9F };           //     XEND = 159
+      0x00, 0x9F};           //     XEND = 159
 
 const uint8_t Rcmd2green144[] PROGMEM = {              // Init for 7735R, part 2 (green 1.44 tab)
     2,                        //  2 commands in list:

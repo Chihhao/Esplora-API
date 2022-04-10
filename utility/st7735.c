@@ -140,12 +140,20 @@ __attribute__ ((optimize("O2"))) void initR(uint8_t options)
   if(options == INITR_GREENTAB) {
     commandList(Rcmd2green);
     colstart = 2;
-    rowstart = 1;
-  } else if(options == INITR_144GREENTAB) {
+    rowstart = 1;	
+  }
+  else if(options == INITR_WHITETAB) {     // add this line
+    commandList(Rcmd2red);                 // add this line
+    colstart = 1;                          // add this line
+    rowstart = 2;                          // add this line
+	tftSetRotation(1);                     // add this line 
+  }   
+  else if(options == INITR_144GREENTAB) {
     //_height = ST7735_TFTHEIGHT_144;
     commandList(Rcmd2green144);
     colstart = 2;
     rowstart = 3;
+
   } else {
     // colstart, rowstart left at default '0' values
     commandList(Rcmd2red);
@@ -179,13 +187,13 @@ __attribute__ ((optimize("O2"))) void tftSetAddrWindow(uint8_t x0, uint8_t y0, u
   sendData8_SPI1(ST7735_CASET); // Column addr set
   
   SET_TFT_DC_HI;          // writeData:
-  sendData32_SPI1(x0, x1); // XSTART, XEND
+  sendData32_SPI1(x0+colstart, x1+colstart); // XSTART, XEND
   
   SET_TFT_DC_LOW;               // writecommand:
   sendData8_SPI1(ST7735_RASET); // Row addr set
   
   SET_TFT_DC_HI;           // writeData:
-  sendData32_SPI1(y0, y1);     // YSTART,YEND
+  sendData32_SPI1(y0+rowstart, y1+rowstart);     // YSTART,YEND
 
   SET_TFT_DC_LOW;               // writecommand:
   sendData8_SPI1(ST7735_RAMWR); // write to RAM
@@ -201,13 +209,13 @@ __attribute__ ((optimize("O2"))) void tftSetVAddrWindow(uint8_t x0, uint8_t y0, 
   sendData8_SPI1(ST7735_CASET); // Column addr set
   
   SET_TFT_DC_HI;          // writeData:
-  sendData32_SPI1(x0, x0); // XSTART, XEND
+  sendData32_SPI1(x0+colstart, x0+colstart); // XSTART, XEND
   
   SET_TFT_DC_LOW;               // writecommand:
   sendData8_SPI1(ST7735_RASET); // Row addr set
   
   SET_TFT_DC_HI;           // writeData:
-  sendData32_SPI1(y0, y1);     // YSTART,YEND
+  sendData32_SPI1(y0+rowstart, y1+rowstart);     // YSTART,YEND
   
   SET_TFT_DC_LOW;               // writecommand:
   sendData8_SPI1(ST7735_RAMWR); // write to RAM
@@ -223,13 +231,13 @@ __attribute__ ((optimize("O2"))) void tftSetHAddrWindow(uint8_t x0, uint8_t y0, 
   sendData8_SPI1(ST7735_CASET); // Column addr set
   
   SET_TFT_DC_HI;          // writeData:
-  sendData32_SPI1(x0, x1); // XSTART, XEND
+  sendData32_SPI1(x0+colstart, x1+colstart); // XSTART, XEND
   
   SET_TFT_DC_LOW;               // writecommand:
   sendData8_SPI1(ST7735_RASET); // Row addr set
   
   SET_TFT_DC_HI;           // writeData:
-  sendData32_SPI1(y0, y0);     // YSTART,YEND
+  sendData32_SPI1(y0+rowstart, y0+rowstart);     // YSTART,YEND
   
   SET_TFT_DC_LOW;               // writecommand:
   sendData8_SPI1(ST7735_RAMWR); // write to RAM
@@ -245,13 +253,13 @@ __attribute__ ((optimize("O2"))) void tftSetAddrPixel(uint8_t x0, uint8_t y0)
   sendData8_SPI1(ST7735_CASET); // Column addr set
   
   SET_TFT_DC_HI;          // writeData:
-  sendData32_SPI1(x0, x0); // XSTART, XEND
+  sendData32_SPI1(x0+colstart, x0+colstart); // XSTART, XEND
   
   SET_TFT_DC_LOW;               // writecommand:
   sendData8_SPI1(ST7735_RASET); // Row addr set
   
   SET_TFT_DC_HI;           // writeData:
-  sendData32_SPI1(y0, y0);     // YSTART,YEND
+  sendData32_SPI1(y0+rowstart, y0+rowstart);     // YSTART,YEND
   
   SET_TFT_DC_LOW;               // writecommand:
   sendData8_SPI1(ST7735_RAMWR); // write to RAM

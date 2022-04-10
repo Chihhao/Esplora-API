@@ -108,7 +108,9 @@ __attribute__ ((optimize("O2"))) void initEsplora(void)
   
   // init LCD
   //initR(INITR_BLACKTAB);
-  initRBlack();
+  //initR(INITR_GREENTAB);  
+  initR(INITR_WHITETAB);   // add this line
+  //initRBlack();
   
   // setup IO
   initMuxIO();
